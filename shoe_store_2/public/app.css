@@ -1,0 +1,262 @@
+
+        #addProduct{
+        box-shadow: 12px 12px 2px 1px rgba(120, 120, 120, .2);
+        border: 1px solid black;
+        border-radius: 5%;
+    }
+    /* dropdown menu on navbar */
+    #dropdown-link{
+      text-decoration: none;
+    }
+    .dropbtn {
+     text-shadow: #717171 ;
+      color: grey;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+    }
+    
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      top: 40%;
+      text-decoration: none;
+     
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 10%;
+    }
+    
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+     
+    }
+    
+    .dropdown-content a:hover {background-color: #ddd;}
+    
+    .dropdown:hover .dropdown-content {display: block;}
+    
+
+
+    /* end of code dropdown menu */
+   
+
+.divMenuWrapper1
+{
+    height: 25px;
+    width: 75px;
+    margin-left: 350px;
+    margin-bottom: 20px;
+}
+
+
+#img{
+
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 300px;
+    max-width: 100%;
+    height: auto;
+    transition: width 1s, height 3s;
+}
+
+#img:hover{
+    border-radius: 8px;
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 15px;
+    width: 350px;
+    max-width: 100%;
+    height: auto;
+    
+}
+
+#img-container{
+    width: 1000px;
+    height: 500px;
+    margin-left: 20%;
+    
+}
+
+#row-img{
+    padding: 40px;
+}
+
+
+#map{
+    height: 400px;
+    width: 100%;
+}
+
+* {box-sizing: border-box;}
+body {font-family: Verdana, sans-serif;}
+.mySlides {display: none;}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  width: 500px;
+  height: auto;
+  position: relative;
+  margin: auto;
+}
+
+#img-fit{
+    object-fit:contain ;
+    width: 1400px;
+    height: 400px;
+}
+
+.img-fitt{
+    object-fit: contain;
+
+}
+#img-fit-div{
+   object-fit:cover;
+   width: 1300px;
+   height: 600px;
+}
+
+
+.active {
+  background-color: #717171;
+}
+
+@keyframes fade {
+    from {opacity: .5} 
+    to {opacity: .9}
+  }
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+.row-img{
+  height: 400px;
+  width: 470px;
+}
+.container-img{
+  display: inline-block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+#img-fit{
+    width: 160px;
+    height: 120px;
+    object-fit: contain;
+    padding: 10px;
+    border: 5px solid grey;
+}
+/* productShow.blade */
+.column-img{
+    /* float: left; */
+  width: 25%;
+  padding: 10px;
+}
+
+.column-img img{
+    opacity: 0.8;
+    cursor: pointer;
+}
+ .column-img img:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.row-img:after{
+    content: "";
+  display: table;
+  clear: both;
+}
+
+#expandedImg{
+  
+    width: 525px;
+    height: auto;
+}
+.container-img{
+    position: relative;
+  display: none;
+}
+/* 
+/* Expanding image text */
+#imgtext {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    color: white;
+    font-size: 20px;
+  }
+  .closebtn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: white;
+    font-size: 35px;
+    cursor: pointer;
+  }
+
+  /* submit btn */
+.btn{
+  margin: 5%;
+}
+  /* end submit btn */
+
+  /* social media */
+  .fa {
+    padding: 10px;
+    font-size: 20px;
+    width: 35px;
+    text-align: center;
+    text-decoration: none;
+    margin-right: 5%;
+    border-radius: 50%;
+  }
+  
+  /* hover effect */
+  .fa:hover {
+    opacity: 0.8;
+  }
+
+  
+  /* Facebook */
+  .fa-facebook {
+    background: #3B5998;
+    color: white;
+  }
+
+
+  /* end social media */
+
+  #editProduct{
+    
+        border: 1px solid black;  
+  }
+
+  #img-fit-edit{
+    width: 250px;
+    height: auto;
+  }
+
+  
