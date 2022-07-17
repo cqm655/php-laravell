@@ -1,6 +1,7 @@
-<nav class="navbar navbar-light navbar-expand-lg " style="background-color:#cfcdca ;">
+<nav class="navbar navbar-light navbar-expand-lg " style="background-color:lightgray ;">
 
-    <a class="navbar-brand " style="margin-left: 5%; color:#655e8b;" href="/">ROSSO SHOE`S</a>
+    <a class="navbar-brand " style="margin-left: 5%; color:lightslategray; font-style: italic;" href="/">Rosso</a>
+  
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

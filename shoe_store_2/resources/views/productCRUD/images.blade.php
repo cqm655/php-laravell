@@ -8,7 +8,7 @@
     <div class="col-md-3">
         <div class="card text-white bg-secondary mb3" style="max-width: 20rem;">
             <div class="card-body">
-                <img src="/product_images/{{$image->image}}" class="card-img-top" alt="">
+                <img src="{{ asset('/storage/product_images/'.$image->image ) }}" class="card-img-top" alt="">
             </div>
         </div>
     </div>

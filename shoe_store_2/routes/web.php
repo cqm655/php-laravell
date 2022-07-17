@@ -13,7 +13,7 @@ Route::post('/product-edit', [ProductController::class, 'editPage'])->name('prod
 
 // CRUD operations routes
 Route::get('/product-images/{id}',[ProductController::class, 'images'])->name('product.images');
-Route::get('/product-delete/{id}',[ProductController::class, 'delete'])->name('product.delete');
+Route::post('/product-delete',[ProductController::class, 'delete'])->name('product.delete');
 Route::post('/product-update',[ProductController::class, 'update'])->name('product.update');
 // End crud operations routes
 

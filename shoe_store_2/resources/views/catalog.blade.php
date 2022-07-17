@@ -38,6 +38,11 @@
    
 <h2>Check Out NEW Collection </h2>
 <hr>
+
+@if(empty($image))
+
+@elseif(!empty($image))
+
 <a href="/product-show/{{$product}}"> <div class="slideshow-container"> <!-- $product = id -->
         <div class="mySlides fade">
             <img src="/product_images/{{$image->image}}" id="last-img" style="width:100%">
@@ -51,7 +56,9 @@
         <div class="mySlides fade">
             <img src="/product_images/{{$image3->image}}" id="last-img" style="width:100%;">
         </div>
-    </div></a>
+    </div>
+</a>
+@endif
    
 </div>
 

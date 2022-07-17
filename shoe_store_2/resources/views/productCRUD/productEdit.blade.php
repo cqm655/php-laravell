@@ -72,28 +72,39 @@
             </div>
         </form>
     </div>
-    @if(!empty($image) && !empty($image1) && !empty($image2) && !empty($image3))
 
-    @foreach($image as $image)
+    @foreach($image as $item)
     @endforeach
-    @foreach($image1 as $image1)
+    @foreach($image1 as $item1)
     @endforeach
-    @foreach($image2 as $image2)
+    @foreach($image2 as $item2)
     @endforeach
-    @foreach($image3 as $image3)
+    @foreach($image3 as $item3)
     @endforeach
 
+    <!-- Preview images from DB, if they are -->
+    <div class="col-md-7 justify-content-between">
+        <div class="row">
+            @if(empty($item) )
+            @elseif(!empty($item))
+            <div class="w-50 p-3"><img id="img-fit-edit" src="/product_images/{{$item->image}}" alt=""></div>
+            @endif
+            @if(empty($item1) )
+            @elseif(!empty($item1))
+            <div class="w-50 p-3"><img id="img-fit-edit" src="/product_images/{{$item1->image}}" alt=""></div>
+            @endif
+            @if(empty($item2) )
+            @elseif(!empty($item2))
+            <div class="w-50 p-3"><img id="img-fit-edit" src="/product_images/{{$item2->image}}" alt=""></div>
+            @endif
+            @if(empty($item3) )
+            @elseif(!empty($item3))
+            <div class="w-50 p-3"><img id="img-fit-edit" src="/product_images/{{$item3->image}}" alt=""></div>
+            @endif
 
+        </div>
+    </div>
 
-    <!-- <div class="col-md-7 d-flex align-content-stretch flex-wrap">
-        <div class="w-50 p-3"><img id="img-fit-edit" src="/product_images/{{$image->image}}" alt=""></div>
-        <div class="w-50 p-3"><img id="img-fit-edit" src="/product_images/{{$image1->image}}" alt=""></div>
-        <div class="w-50 p-3"><img id="img-fit-edit" src="/product_images/{{$image2->image}}" alt=""></div>
-        <div class="w-50 p-3"><img id="img-fit-edit" src="/product_images/{{$image3->image}}" alt=""></div>
-    </div> -->
-
-
- @endif
 
 
 

@@ -84,6 +84,7 @@
 </div>
 <div class="col-md-7" id="addProduct">
     <h3>Products</h3>
+    <input type="text" id="search" placeholder="Insert product Title">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -112,7 +113,11 @@
                 <a href="{{route('product.images', $product->id)}}" class="btn btn-outline-dark">View</a>
                </td>
                <td>
-                <a href="{{route('product.delete', $product->id)}}" class="btn btn-outline-danger">DEL</a>
+               <form action="/product-delete" method="post">
+                    @csrf
+                    <input type="hidden" value="{{$product->id}}" name="id">
+                    <button class="btn btn-outline-danger">DEL</button>
+                </form>
                </td>
                <td>
                 <form action="/product-edit" method="POST">
