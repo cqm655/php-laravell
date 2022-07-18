@@ -87,19 +87,19 @@
         <div class="row">
             @if(empty($item) )
             @elseif(!empty($item))
-            <div class="w-50 p-3"><img id="img-fit-edit" src="/product_images/{{$item->image}}" alt=""></div>
+            <div class="w-50 p-3"><img id="img-fit-edit" src="/storage/product_images/{{$item->image}}" alt=""></div>
             @endif
             @if(empty($item1) )
             @elseif(!empty($item1))
-            <div class="w-50 p-3"><img id="img-fit-edit" src="/product_images/{{$item1->image}}" alt=""></div>
+            <div class="w-50 p-3"><img id="img-fit-edit" src="/storage/product_images/{{$item1->image}}" alt=""></div>
             @endif
             @if(empty($item2) )
             @elseif(!empty($item2))
-            <div class="w-50 p-3"><img id="img-fit-edit" src="/product_images/{{$item2->image}}" alt=""></div>
+            <div class="w-50 p-3"><img id="img-fit-edit" src="/storage/product_images/{{$item2->image}}" alt=""></div>
             @endif
             @if(empty($item3) )
             @elseif(!empty($item3))
-            <div class="w-50 p-3"><img id="img-fit-edit" src="/product_images/{{$item3->image}}" alt=""></div>
+            <div class="w-50 p-3"><img id="img-fit-edit" src="/storage/product_images/{{$item3->image}}" alt=""></div>
             @endif
 
         </div>

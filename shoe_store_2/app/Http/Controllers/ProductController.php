@@ -23,7 +23,7 @@ class ProductController extends Controller
             return view('catalog');
         } else {
             $last = $lastimg->take(1);
-            $last1 = $lastimg->take(2);   //take latest added photo to view on main page
+            $last1 = $lastimg->take(2);   //take latest added photo to view on main page(catalog.blade)
             $last2 = $lastimg->take(3);
             $last3 = $lastimg->take(4);
 
@@ -37,7 +37,8 @@ class ProductController extends Controller
     public function create()
     {
         $products =  Product::all();
-        return view('productCRUD.productCreate', compact('products'));
+        $products_paginator = Product::Paginate(8);
+        return view('productCRUD.productCreate', compact('products','products_paginator'));
     }
 
     public function store(Request $req)
@@ -89,7 +90,8 @@ class ProductController extends Controller
 
     public function productShow($id)
     {
-        $product = Product::find($id);
+        $product = Product::findOrFail($id);
+        
         if (!$product) {
             abort(404);
         } else {
@@ -175,6 +177,11 @@ class ProductController extends Controller
 
         if ($req->has('images')) {
             $delete_old_images = Image::where('product_id', '=', $product_id)->truncate();
+            foreach($delete_old_images as $i){
+                $img=$i->image;
+                $img_path = public_path("storage/product_images/".$img);
+                unlink($img_path);
+            }
             foreach ($req->file('images') as $image) {
                 $imageName = time() . rand(1, 1000) . '.' . $image->extension();
                 $image->move(public_path('product_images'), $imageName);

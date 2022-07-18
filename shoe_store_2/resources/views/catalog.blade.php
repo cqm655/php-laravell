@@ -2,7 +2,8 @@
 @section('content')
 @include('mapsView.mapsView')
 <div class="img-fitt"></div>
-<img id="img-fit-div" src="https://images.pexels.com/photos/267301/pexels-photo-267301.jpeg?cs=srgb&dl=pexels-pixabay-267301.jpg&fm=jpg" alt="">
+<!-- <img id="img-fit-div" src="https://images.pexels.com/photos/267301/pexels-photo-267301.jpeg?cs=srgb&dl=pexels-pixabay-267301.jpg&fm=jpg" alt=""> -->
+<img id="img-fit-div" src="https://thegadgetflow.com/wp-content/uploads/2022/05/Fibonacci-Shoes-Temperature-Regulating-Footwear-04-1200x900.jpg" alt="">
 
 <div class="container d-flex" id="img-container">
     <div class="row" id="row-img">
@@ -24,6 +25,7 @@
 
 <div>
 
+   
     @foreach($last as $image)
     @endforeach
 
@@ -39,22 +41,22 @@
 <h2>Check Out NEW Collection </h2>
 <hr>
 
-@if(empty($image))
+@if(empty($image) || empty($image1) || empty($image2) || empty($image3))
 
-@elseif(!empty($image))
+@elseif(!empty($image) && !empty($image1) && !empty($image2) && !empty($image3))
 
 <a href="/product-show/{{$product}}"> <div class="slideshow-container"> <!-- $product = id -->
         <div class="mySlides fade">
-            <img src="/product_images/{{$image->image}}" id="last-img" style="width:100%">
+            <img src="storage/product_images/{{$image->image}}" id="last-img" style="width:100%">
         </div>
         <div class="mySlides fade">
-            <img src="/product_images/{{$image1->image}}" id="last-img" style="width:100%">
+            <img src="storage/product_images/{{$image1->image}}" id="last-img" style="width:100%">
         </div>
         <div class="mySlides fade">
-            <img src="/product_images/{{$image2->image}}" id="last-img" style="width:100%;">
+            <img src="storage/product_images/{{$image2->image}}" id="last-img" style="width:100%;">
         </div>
         <div class="mySlides fade">
-            <img src="/product_images/{{$image3->image}}" id="last-img" style="width:100%;">
+            <img src="storage/product_images/{{$image3->image}}" id="last-img" style="width:100%;">
         </div>
     </div>
 </a>

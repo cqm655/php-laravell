@@ -6,8 +6,9 @@
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
-        <div class="navbar-nav" style="margin-right: 20%;">
+        <div class="navbar-nav" style="margin-left: 5%;">
 
             <div id="divMenuWrapper1" class="divMenuWrapper1 d-flex">
                 <div class="dropdown">

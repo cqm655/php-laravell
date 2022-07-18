@@ -51,7 +51,7 @@
     <div class="form-group">
         <label class="mt-2">Size</label><br>
         <div class="div-btn-check" style="display: flex;">
-           <input type="text" class="form-control" name="size" required>
+           <input type="text" class="form-control" name="size" maxlength="30" min="40" max="44" pattern="[0-9?,]+" required>
         </div>
     </div>
     <div class="form-group">
@@ -84,7 +84,7 @@
 </div>
 <div class="col-md-7" id="addProduct">
     <h3>Products</h3>
-    <input type="text" id="search" placeholder="Insert product Title">
+    <input type="text" id="search" placeholder="Cauta dupa Titlu...">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -138,5 +138,6 @@
     </table>
 </div>
 </div>
+
 
 @endsection

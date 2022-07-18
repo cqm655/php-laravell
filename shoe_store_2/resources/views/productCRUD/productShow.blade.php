@@ -17,22 +17,22 @@
     <div class="row">
         <div class="col-sm-3">
             <div class="column-img">
-                <img id="img-fit" src="/product_images/{{$image1->image}}" onclick="myFunction(this);">
+                <img id="img-fit" src="/storage/product_images/{{$image1->image}}" onclick="myFunction(this);">
             </div>
             <div class="column-img">
-                <img id="img-fit" src="/product_images/{{$image2->image}}" onclick="myFunction(this);">
+                <img id="img-fit" src="/storage/product_images/{{$image2->image}}" onclick="myFunction(this);">
             </div>
             <div class="column-img">
-                <img id="img-fit" src="/product_images/{{$image3->image}}" onclick="myFunction(this);">
+                <img id="img-fit" src="/storage/product_images/{{$image3->image}}" onclick="myFunction(this);">
             </div>
             <div class="column-img">
-                <img id="img-fit" src="/product_images/{{$image4->image}}" onclick="myFunction(this);">
+                <img id="img-fit" src="/storage/product_images/{{$image4->image}}" onclick="myFunction(this);">
             </div>
         </div>
         <div class="col">
             <div class="row">
                 <!-- Expanded image -->
-                <img id="expandedImg" src="/product_images/{{$image1->image}}" onclick="myFunction(this);">
+                <img id="expandedImg" src="/storage/product_images/{{$image1->image}}" onclick="myFunction(this);">
             </div>
         </div>
         <div class="col-sm">

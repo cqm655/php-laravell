@@ -15,6 +15,7 @@
   box-shadow: 12px 12px 2px 1px rgba(120, 120, 120, .2);
   border: 1px solid lightgray;
   border-radius: 5%;
+  width: auto;
 }
 
 /* dropdown menu on navbar */
@@ -155,7 +156,7 @@ img {
 #img-fit-div {
   object-fit: cover;
   width: 1300px;
-  height: 600px;
+  height: 500;
 }
 
 
@@ -303,4 +304,8 @@ img {
 #img-fit-edit {
   width: 250px;
   height: auto;
+}
+
+table{
+  table-layout: auto;
 }
