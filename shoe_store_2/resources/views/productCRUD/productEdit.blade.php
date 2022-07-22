@@ -38,8 +38,52 @@
             </div>
             <div class="form-group">
                 <label class="mt-2">Size</label><br>
-                <div class="div-btn-check" style="display: flex;">
-                    <input type="text" class="form-control" name="size" value="{{$product->product_size}}" required>
+                <div class="container size-name d-flex" id="size">
+                    <label for="" style="margin-right: 20px;">40</label>
+                    <label for="" style="margin-right: 20px;">41</label>
+                    <label for="" style="margin-right: 20px;">42</label>
+                    <label for="" style="margin-right: 20px;">43</label>
+                    <label for="" style="margin-right: 20px;">44</label>
+                </div>
+                <div class="container d-flex">
+                    <div class="div-btn-check" style="display: flex;">
+                        <select name="s40" id="" style="margin-right: 5px;">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                        <select name="s41" id="" style="margin-right: 5px;">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                        <select name="s42" id="" style="margin-right: 5px;">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                        <select name="s43" id="" style="margin-right: 5px;">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                        <select name="s44" id="">
+                        <option value="{{$product->product_size}}" selected>{{$product->product_size}}</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="form-group">

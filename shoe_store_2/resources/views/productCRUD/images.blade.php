@@ -2,7 +2,7 @@
 @section('content')
 <h2>Images for : <span class="text-primary">{{$product->product_name}}</span></h2>
 <h2>Style : <span class="text-primary">{{$product->product_style}}</span></h2>
-<a href="/product-create" class="btn btn-primary">Go back</a>
+<a href="/all-products" class="btn btn-primary">Go back</a>
 <div class="row mt-4">
 @foreach($images as $image)
     <div class="col-md-3">

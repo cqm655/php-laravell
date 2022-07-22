@@ -34,11 +34,27 @@ class ProductController extends Controller
     }
 
 
-    public function create()
+    public function create(Request $req)
     {
-        $products =  Product::all();
-        $products_paginator = Product::Paginate(8);
-        return view('productCRUD.productCreate', compact('products','products_paginator'));
+        $product =  Product::all();
+
+
+        return view('productCRUD.productCreate', compact('product'));
+    }
+
+    public function productDB(Request $req)
+    {
+        $count = Product::all();
+        $size = DB::table('products')->select('product_size')->get();
+
+        $count->count();
+        $product = Product::when($req->has('product'), function ($q) use ($req) {
+            return $q->where("product_name", "like", "%" . $req->get("product_name") . "%");
+        })->paginate(6);
+        if ($req->ajax()) {
+            return view('allProductsDb.productPagination', ['product' => $product]);
+        }
+        return view('allProductsDb.productDB', ['product' => $product], compact('count'));
     }
 
     public function store(Request $req)
@@ -46,17 +62,44 @@ class ProductController extends Controller
         $new_product = new Product();
         $req->all();
 
+        // convert number of shoes, from option/select menu
+       
+
+   
+
+        function shoeNumber(Request $req)
+        {
+            $size40 = $req->s40;
+            $size41 = $req->s41;
+            $size42 = $req->s42;
+            $size43 = $req->s43;
+            $size44 = $req->s44;
+
+            $string = str_repeat('40',$size40);
+            $string1 = str_repeat('41',$size41);
+            $string2 = str_repeat('42',$size42);
+            $string3 = str_repeat('43',$size43);
+            $string4 = str_repeat('44',$size44);
+
+            $arrString = $string.$string1.$string2.$string3.$string4;
+            $size = implode(' ',str_split($arrString,2));
+            return $size;
+        }
+       
+        
+
         $title = $req->title;
         $style = $req->style;
-        $size = $req->size;
+
         $color = $req->color;
         $price = $req->price;
         $gender = $req->gender;
         $description = $req->description;
 
+
         $new_product->product_name = $title;
         $new_product->product_style = $style;
-        $new_product->product_size = $size;
+        $new_product->product_size = shoeNumber($req);
         $new_product->product_color = $color;
         $new_product->product_price = $price;
         $new_product->gender = $gender;
@@ -91,7 +134,7 @@ class ProductController extends Controller
     public function productShow($id)
     {
         $product = Product::findOrFail($id);
-        
+
         if (!$product) {
             abort(404);
         } else {
@@ -104,18 +147,18 @@ class ProductController extends Controller
     }
 
     public function delete(Request $req)
-    {  
+    {
         $product = Product::findOrFail($req->id);
-        
+
         // Delete multiple record(images) from public folder
         $images = $product->images;
-        foreach($images as $i){
-            $img=$i->image;
-            $img_path = public_path("storage/product_images/".$img);
+        foreach ($images as $i) {
+            $img = $i->image;
+            $img_path = public_path("storage/product_images/" . $img);
             unlink($img_path);
         }
         // delete data from DB
-        $images=DB::table('images')->where('product_id','=',$product)->truncate();
+        $images = DB::table('images')->where('product_id', '=', $product)->truncate();
         $product->delete();
 
         return back()->with('deleted', 'Deleted');
@@ -177,9 +220,9 @@ class ProductController extends Controller
 
         if ($req->has('images')) {
             $delete_old_images = Image::where('product_id', '=', $product_id)->truncate();
-            foreach($delete_old_images as $i){
-                $img=$i->image;
-                $img_path = public_path("storage/product_images/".$img);
+            foreach ($delete_old_images as $i) {
+                $img = $i->image;
+                $img_path = public_path("storage/product_images/" . $img);
                 unlink($img_path);
             }
             foreach ($req->file('images') as $image) {
@@ -195,5 +238,44 @@ class ProductController extends Controller
 
 
         return redirect('/product-create');
+    }
+
+    public function search(Request $req)
+    {
+        $products = Product::all();
+        $productStyle = Product::all();
+        $productColor = Product::all();
+        if ($req->keyword != '') {
+            $products = Product::where('product_name', 'LIKE', '%' . $req->keyword . '%')->get();
+            $productStyle = Product::where('product_style', 'LIKE', '%' . $req->keyword . '%')->get();
+            $productColor = Product::where('product_color', 'LIKE', '%' . $req->keyword . '%')->get();
+            // $productPrice = Product::where('product_style','BETWEEN',$req->keyword.'AND'.$req->keyword1)->get();
+        }
+
+        return response()->json([
+            'products' => $products,
+            'productStyle' => $productStyle,
+            'productColor' => $productColor,
+            //    'productPrice' => $productPrice,
+        ]);
+    }
+
+    public function allProducts(Request $req)
+    {
+        $products = Product::all();
+        $images = Image::all();
+
+
+
+        return view('allProducts', compact('products', 'images'));
+    }
+
+    public function productsPaginate(Request $req)
+    {
+
+        if ($req->ajax()) {
+            $data = DB::table('products')->simplePaginate(5);
+            return view('pagination', compact('data'));
+        }
     }
 }

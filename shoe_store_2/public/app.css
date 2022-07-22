@@ -309,3 +309,23 @@ img {
 table{
   table-layout: auto;
 }
+
+/* preview image */
+#preview{
+  display: block;
+  width: 600px;
+  height: 600px;
+}
+#preview img{
+  width: auto;
+  height: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  opacity: 85%;
+  padding: 2%;
+}
+
+textarea{
+  width: 300px;
+  height: 150px;
+}
