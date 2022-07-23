@@ -45,7 +45,11 @@
           <hr>
           <h6>STIL: @php echo ucfirst("{$product->product_style}"); @endphp</h6> <!-- Uppercase fisrt letter -->
           <hr>
-          <h6>Marimi: {{$product->product_size}}</h6>
+          <h6>Marimi: 
+          @foreach($size as $i )
+          @php $value = json_decode($i); echo $value @endphp
+          @endforeach
+          </h6>
         </div>
     </div>
 </div>

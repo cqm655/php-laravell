@@ -8,8 +8,7 @@ use App\Models\Image;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-
-
+use Illuminate\Validation\Rules\Unique;
 
 class ProductController extends Controller
 {
@@ -63,10 +62,7 @@ class ProductController extends Controller
         $req->all();
 
         // convert number of shoes, from option/select menu
-       
-
-   
-
+  
         function shoeNumber(Request $req)
         {
             $size40 = $req->s40;
@@ -134,6 +130,10 @@ class ProductController extends Controller
     public function productShow($id)
     {
         $product = Product::findOrFail($id);
+        $s = DB::table('products')->select('product_size')->where('id','=',$id)->get()->collect();
+        $size = explode(' ',$s);
+        $size=array_unique($size);
+     
 
         if (!$product) {
             abort(404);
@@ -142,7 +142,7 @@ class ProductController extends Controller
             $images2 = $product->images->take(2);
             $images3 = $product->images->take(3);
             $images4 = $product->images->take(4);
-            return view('productCRUD.productShow', compact('product', 'images1', 'images2', 'images3', 'images4'));
+            return view('productCRUD.productShow', compact('product','size', 'images1', 'images2', 'images3', 'images4'));
         }
     }
 
