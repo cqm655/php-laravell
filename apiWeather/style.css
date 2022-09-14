@@ -29,8 +29,20 @@ html,body{
     border-radius: 5px;
     padding: 2%;
     width: 350px;
-    text-align: webkit;
+
 }
 .badge-danger{
     color: red;
+}
+.weather-info{
+    margin-top: 20px;
+    width: 350px;
+    top: 50%;
+    left: 40%;
+    border: 0.5px solid grey;
+    box-shadow: 5px 10px #888888;
+    border-radius: 5px;
+    padding: 2%;
+    display: none;
+
 }
