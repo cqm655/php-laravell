@@ -3,15 +3,21 @@
 $messName=$messSurname=$messAge=$message="";
 
 if($_SERVER["REQUEST_METHOD"] === "POST"){
-    if(!empty($_POST["name"])){}
+    if(!empty($_POST["name"])){
+
+    }
    else {
     $messName="Insert Name !!!";
    }
-   if(!empty($_POST["surname"])){}
+   if(!empty($_POST["surname"])){
+
+   }
    else {
     $messSurname="Insert Surname !!!";
    }
-   if(!empty($_POST["age"])){}
+   if(!empty($_POST["age"])){
+    
+   }
    else {
     $messAge="Insert age !!!";
    }
