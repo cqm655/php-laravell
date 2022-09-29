@@ -24,54 +24,61 @@ session_start();
         <!-- background area -->
         <div class="bg-img" id="bg-img">
             <div class="bg-text">
-                <div class="title-search">
-                    <h2>Search By:</h2>
-                </div>
                 <form action="api.php" method="post">
                     <div class="checkbox">
                         <input class="inputSyle" type="text" placeholder="name" name="name">
-                        <input class="inputSyle" type="text" placeholder="genre" name="genre">
-                        <button type="submit" class="formBtn" >Search</button>
+                        <button type="submit" class="formBtn">Search</button>
                     </div>
                 </form>
             </div>
+
+
             <div class="showContent">
-                
+                <div class="table-wrapper">
+                    <table class="fl-table">
 
+                        <thead>
+                            <tr>
+                                <th>Artist Name</th>
+                                <th>Song Name</th>
+                                <th>Duration</th>
+                                <th>Album</th>
+                            </tr>
+                        </thead>
+                        <!-- end background area -->
 
+                        <?php
+                        // second argument for making as an array
+                        $value = json_decode($_SESSION['response'], true);
+                        if (!empty($value)) {
+                            foreach ($value as $key => $v) {
+                            }
+                            // get parameters from url 
+                            $url_components = parse_url($v);
+                            parse_str($url_components['query'], $params);
+                            // get value from parameter
+                            $len = $params['index'];
 
-                <table id="content">
-                    
-                    <tr>
-                        <th>Name</th>
-                        <th>Genre</th>
-                    </tr>
-                </table>
+                            echo '<tbody>';
+                            while ($len > 0) {
+                                echo
+                                '<tr>' .
+                                    '<td>' . $value['data'][$len - 1]['artist']['name'] . '</td>' .
+                                    '<td>' . $value['data'][$len - 1]['title'] . '</td>' .
+                                    '<td>' . $value['data'][$len - 1]['duration'] . '</td>' .
+                                    '<td>' . $value['data'][$len - 1]['album']['title'] . '</td>' .
+                                    '</tr>';
+                                $len--;
+                            }
+                            echo '</tbody>';
+                        }
+                        ?>
+
+                    </table>
+                </div>
             </div>
+
         </div>
-        <!-- end background area -->
-        <?php
-        // second argument for making as an array
-$value = json_decode($_SESSION['response'],true);
-
-foreach($value as $key => $v){
-//    print_r($value['data']); 
-
-}
-// get parameters from url 
-$url_components = parse_url($v);
-parse_str($url_components['query'], $params);
-// get value from parameter
-$len = $params['index'];
-
-while($len>0){
-     echo   '<h1>'.$value['data'][$len-1]['title'] . '</h1><br><hr>';
-     $len--;
-}
-   
-
-
-?>
     </section>
 </body>
 
