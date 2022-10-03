@@ -5,15 +5,13 @@ $login=$pass=$pass1=$passDontMatch=$passMatch="";
 
 if($_SERVER["REQUEST_METHOD"] === "POST"){
     
-   
-   
-       if(empty($_POST['username']) || empty($_POST['password']) || empty($_POST['password1']))
+       if(empty($_POST['user_name']) || empty($_POST['user_password']) || empty($_POST['password1']))
        {
            echo "insert data";
            
        } else {
-           $login = $_POST['username'];
-           $pass = $_POST['password'];
+           $login = $_POST['user_name'];
+           $pass = $_POST['user_password'];
            $pass1 = $_POST['password1'];
 
            if($pass != $pass1){
@@ -21,7 +19,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
             echo $pass . "  " . $pass1;
           } else {
               $passMatch ="Password match";
-              $sql = "INSERT INTO connect (username, password) values ('$login','$pass')";
+              $sql = "INSERT INTO users (user_name, user_password) values ('$login','$pass')";
    
                $conn->query($sql);
                header("Location: succes_page.php");
@@ -54,11 +52,11 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         <form action="register.php" method="POST">
             Enter username:
             <div class="mb-3">
-               <input type="text" name="username" placeholder="insert username"> <br>
+               <input type="text" name="user_name" placeholder="insert username"> <br>
             </div>
             Enter password:
             <div class="mb-3">
-               <input type="password" name="password" placeholder="insert password"> <br>
+               <input type="password" name="user_password" placeholder="insert password"> <br>
             </div>
             
             <div class="mb-3">

@@ -2,7 +2,7 @@
 require 'connect_DB.php';
 echo "Succes" . "<br>";
 
-echo "Welcome dear ". $_SESSION["userName"] ."<br>";
+echo "Welcome dear ". $_SESSION["user_name"] ."<br>";
 
 
 ?>

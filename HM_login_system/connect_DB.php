@@ -1,4 +1,4 @@
 <?php
-   $conn = new mysqli("localhost", "root", "", "login");
+   $conn = new mysqli("127.0.0.1", "root", "", "login");
    session_start();
    
