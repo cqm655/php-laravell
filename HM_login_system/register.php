@@ -1,79 +1,36 @@
 <?php
 require 'connect_DB.php';
-$login=$pass=$pass1=$passDontMatch=$passMatch="";
+$login = $pass = $pass1 = $passDontMatch = $passMatch = $passMail = "";
 
 
-if($_SERVER["REQUEST_METHOD"] === "POST"){
-    
-       if(empty($_POST['user_name']) || empty($_POST['user_password']) || empty($_POST['password1']))
-       {
-           echo "insert data";
-           
-       } else {
-           $login = $_POST['user_name'];
-           $pass = $_POST['user_password'];
-           $pass1 = $_POST['password1'];
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-           if($pass != $pass1){
-            $passDontMatch= "Password dont match";
-            echo $pass . "  " . $pass1;
-          } else {
-              $passMatch ="Password match";
-              $sql = "INSERT INTO users (user_name, user_password) values ('$login','$pass')";
-   
-               $conn->query($sql);
-               header("Location: succes_page.php");
-           }
-          }   
-   }
-   
-?>
+    if (empty($_POST['user_name']) || empty($_POST['user_password']) || empty($_POST['user_password_check'] || empty($_POST['user_email']))) {
+        echo "insert data";
+    } else {
+        $login = $_POST['user_name'];
+        $mail = $_POST['user_email'];
+        $pass = $_POST['user_password'];
+        $pass1 = $_POST['user_password_check'];
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body{
-            background: yellow;
+
+
+        if (  !preg_match("[abc] ", $login) && $pass != $pass1) {
+            $_SESSION['logPassError'] = "errorC";
+            header("Location: index.php");
+        } else if (!preg_match("[abc]", $login) && strlen($login)>=1  ) {
+            $_SESSION['loginError'] = "errorA";
+            header("Location: index.php");
+        } else if($pass != $pass1){
+            $_SESSION['passError'] = 'errorB';
+            header("Location: index.php");
+        } else{
+
+            $sql = "INSERT INTO users (user_name, user_password, user_email) values ('$login','$pass','$mail')";
+
+            $conn->query($sql);
+            header("Location: succes_page.php");
         }
-    </style>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>Register</title>
-</head>
-<body>
-    
-<div class="login position-relative position-absolute top-50 start-50 translate-middle">
-<h1>Register new user</h1>
-    <div class="container ">
-        <form action="register.php" method="POST">
-            Enter username:
-            <div class="mb-3">
-               <input type="text" name="user_name" placeholder="insert username"> <br>
-            </div>
-            Enter password:
-            <div class="mb-3">
-               <input type="password" name="user_password" placeholder="insert password"> <br>
-            </div>
-            
-            <div class="mb-3">
-            <span style="color: red"><?php  echo $passDontMatch; ?></span> <br>
-            <span style="color: green"><?php  echo $passMatch; ?></span> <br>
-               <input type="password" name="password1" placeholder="insert password"> <br>
-            </div>
-            <button type="submit" class="btn btn-outline-success" >OK</button>
-            
-        </form>
-        <a href="./index.php">Already registered?</a>       
-    </div>
-    </div>
-</body>
-</html>
-
-<?php
-
-
-?>
+    }
+}
