@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-    
+
     <title>Login</title>
 </head>
 
@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <input type="email" name="user_email" id="user_email" placeholder="Email" required />
                     <input type="password" name="user_password" id="user_password" placeholder="Password" required />
                     <input type="password" name="user_password_check" id="user_password_check" placeholder="Reenter password" required />
-                   
+
                     <button type="submit" id="btn">Sign Up</button>
                 </form>
             </div>
@@ -96,94 +96,125 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
         </div>
     </div>
-        <!-- get the error message -->
-        <input type="hidden" id="loginError" value='<?php echo $_SESSION['loginError'] ?>'>
-        <input type="hidden" id="passError" value='<?php echo $_SESSION['passError'] ?>'>   
-        <input type="hidden" id="logPassError" value='<?php echo $_SESSION['logPassError'] ?>'>   
-    
+    <!-- get the error message -->
+    <input type="hidden" id="loginError" value='<?php echo $_SESSION['loginError'] ?>'>
+    <input type="hidden" id="passError" value='<?php echo $_SESSION['passError'] ?>'>
+    <input type="hidden" id="logPassError" value='<?php echo $_SESSION['logPassError'] ?>'>
+    <input type="hidden" id="db_user" value='<?php echo $_SESSION['db_user'] ?>'>
+    <input type="hidden" id="db_mail" value='<?php echo $_SESSION['db_mail'] ?>'>
+
 </body>
 <script src="app.js"></script>
 <script>
-const login = document.getElementById("loginError").value;
-const passMatch = document.getElementById("passError").value;
-const logPassError = document.getElementById("logPassError").value;
-let a = '';
+    const login = document.getElementById("loginError").value;
+    const passMatch = document.getElementById("passError").value;
+    const logPassError = document.getElementById("logPassError").value;
+    const db_user = document.getElementById("db_user").value;
+    const db_mail = document.getElementById("db_mail").value;
 
-if( login == 'errorA'){
-    a = 1 ;
-}
+    let a = '';
 
-if( passMatch == 'errorB'){
-    a = 2 ;
-}
+    if (login == 'error_on_login') {
+        a = 1;
+    }
 
-if(logPassError == 'errorC'){
-    a = 3 ;
-}
+    if (passMatch == 'error_on_pass') {
+        a = 2;
+    }
 
-switch(a){
+    if (logPassError == 'error_on_user_&_pass') {
+        a = 3;
+    }
 
-    case 1: 
-        window.onload = () => {
-    const signUpButton1 = document.getElementById('signUp');
-    const container1 = document.getElementById('container');
-    document.getElementById('user_name').placeholder = "must have min 6 ch, a-Z, 0-9";
-    document.getElementById('user_name').style.border = "1px solid red";
-	container1.classList.add("right-panel-active");	}; break;
+    if (db_user == 'user_exist') {
+        a = 4;
+    }
 
-    case 2:
-        window.onload = () => {
+    if (db_mail == 'mail_exist') {
+        a = 5;
+    }
 
-    const signUpButton2 = document.getElementById('signUp');
-    const container2 = document.getElementById('container');
-    document.getElementById('user_password').placeholder = "pass don`t";
-    document.getElementById('user_password').style.border = "1px solid red";
-	container2.classList.add("right-panel-active");	
+    switch (a) {
 
-    const signUpButton3 = document.getElementById('signUp');
-    const container3 = document.getElementById('container');
-    document.getElementById('user_password_check').placeholder = "pass don`t";
-    document.getElementById('user_password_check').style.border = "1px solid red";
-	container3.classList.add("right-panel-active");	}; 
+        case 1:
+            window.onload = () => {
+                const signUpButton1 = document.getElementById('signUp');
+                const container1 = document.getElementById('container');
+                document.getElementById('user_name').placeholder = "must have min 6 ch, a-Z";
+                document.getElementById('user_name').style.border = "1px solid red";
+                container1.classList.add("right-panel-active");
+            };
+            break;
 
-  break;
-    
-    case 3: 
-        window.onload = () => {
-    const signUpButton1 = document.getElementById('signUp');
-    const container1 = document.getElementById('container');
-    document.getElementById('user_name').placeholder = "must have min 6 ch, a-Z, 0-9";
-    document.getElementById('user_name').style.border = "1px solid red";
-	container1.classList.add("right-panel-active");	
+        case 2:
+            window.onload = () => {
 
-    const signUpButton2 = document.getElementById('signUp');
-    const container2 = document.getElementById('container');
-    document.getElementById('user_password').placeholder = "pass don`t";
-    document.getElementById('user_password').style.border = "1px solid red";
-	container2.classList.add("right-panel-active");	
+                const signUpButton2 = document.getElementById('signUp');
+                const container2 = document.getElementById('container');
+                document.getElementById('user_password').placeholder = "pass don`t";
+                document.getElementById('user_password').style.border = "1px solid red";
+                container2.classList.add("right-panel-active");
 
-    const signUpButton3 = document.getElementById('signUp');
-    const container3 = document.getElementById('container');
-    document.getElementById('user_password_check').placeholder = "pass don`t";
-    document.getElementById('user_password_check').style.border = "1px solid red";
-	container3.classList.add("right-panel-active");	}; 
+                const signUpButton3 = document.getElementById('signUp');
+                const container3 = document.getElementById('container');
+                document.getElementById('user_password_check').placeholder = "pass don`t";
+                document.getElementById('user_password_check').style.border = "1px solid red";
+                container3.classList.add("right-panel-active");
+            };
 
-  break;
+            break;
 
+        case 3:
+            window.onload = () => {
+                const signUpButton1 = document.getElementById('signUp');
+                const container1 = document.getElementById('container');
+                document.getElementById('user_name').placeholder = "must have min 6 ch, a-Z, 0-9";
+                document.getElementById('user_name').style.border = "1px solid red";
+                container1.classList.add("right-panel-active");
 
-}
+                const signUpButton2 = document.getElementById('signUp');
+                const container2 = document.getElementById('container');
+                document.getElementById('user_password').placeholder = "pass don`t";
+                document.getElementById('user_password').style.border = "1px solid red";
+                container2.classList.add("right-panel-active");
 
+                const signUpButton3 = document.getElementById('signUp');
+                const container3 = document.getElementById('container');
+                document.getElementById('user_password_check').placeholder = "pass don`t";
+                document.getElementById('user_password_check').style.border = "1px solid red";
+                container3.classList.add("right-panel-active");
+            };
+            break;
 
+        case 4:
+            window.onload = () => {
+                const signUpButton4 = document.getElementById('signUp');
+                const container4 = document.getElementById('container');
+                document.getElementById('user_name').placeholder = "username exist";
+                document.getElementById('user_name').style.border = "1px solid red";
+                container4.classList.add("right-panel-active");
+            };
+            break;
 
-
+        case 5:
+            window.onload = () => {
+                const signUpButton5 = document.getElementById('signUp');
+                const container5 = document.getElementById('container');
+                document.getElementById('user_email').placeholder = "mail exist";
+                document.getElementById('user_email').style.border = "1px solid red";
+                container5.classList.add("right-panel-active");
+            };
+            break;
+    }
 </script>
-
-
 
 </html>
 
-<?php 
+<?php
 $_SESSION['loginError'] = '';
 $_SESSION['passError'] = '';
 $_SESSION['logPassError'] = '';
+$_SESSION['exist'] = '';
+$_SESSION['db_user'] = '';
+$_SESSION['db_mail'] = '';
 ?>
