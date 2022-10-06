@@ -20,6 +20,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($result->num_rows > 0) {
             while ($data = $result->fetch_assoc()) {
 
+                //to prevent from mysqli injection  
+                $user = stripcslashes($user);
+                $pass = stripcslashes($pass);
+                $user = mysqli_real_escape_string($conn, $user);
+                $pass = mysqli_real_escape_string($conn, $pass);
+
+
+
                 $user = $data["user_name"];
                 $pass = $data["user_password"];
                 if (($user === $_POST['user_name']) && ($pass === $_POST['user_password'])) {

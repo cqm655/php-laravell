@@ -19,8 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $lowercase = preg_match('@[a-z]@', $pass);
         $specialChars = preg_match('@[^\w]@', $pass);
         //  verify login and mail in DB
-       $select = "select * from users";
-       $result =  $conn->query($select);
+        $select = "select * from users";
+        $result =  $conn->query($select);
 
         if ($result->num_rows > 0) {
             while ($data = $result->fetch_assoc()) {
@@ -29,25 +29,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $DB_mail = $data["user_email"];
 
                 if (($DB_user === $login)) {
+
                     $_SESSION['db_user'] = 'user_exist';
                     header("Location: index.php");
-                } else if($DB_mail === $mail){
+                } else if ($DB_mail === $mail) {
+
                     $_SESSION['db_mail'] = 'mail_exist';
                     header("Location: index.php");
                 } else {
-                    if (!preg_match("[a-zA-Z]", $login) && $pass != $pass1 && ( strlen($pass)<8 || !$number) || (!$uppercase) || (!$lowercase) || (!$specialChars)) {
+
+                    if (!preg_match("[a-zA-Z]", $login) && $pass != $pass1 && (strlen($pass) < 8 || !$number) || (!$uppercase) || (!$lowercase) || (!$specialChars)) {
+
                         $_SESSION['logPassError'] = "error_on_user_&_pass";
                         header("Location: index.php");
                     } else if (!preg_match("[a-zA-Z]", $login) && strlen($login) <= 6) {
+
                         $_SESSION['loginError'] = "error_on_login";
                         header("Location: index.php");
                     } else if ($pass != $pass1) {
+
                         $_SESSION['passError'] = 'error_on_pass';
                         header("Location: index.php");
                     } else {
-            
+
                         $sql = "INSERT INTO users (user_name, user_password, user_email) values ('$login','$pass','$mail')";
-            
+
                         $conn->query($sql);
                         header("Location: succes_page.php");
                     }
@@ -55,10 +61,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
         }
         $conn->close();
-
-
-
-
-      
     }
 }
